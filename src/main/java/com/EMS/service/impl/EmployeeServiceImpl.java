@@ -1,10 +1,13 @@
-package com.EMS.services.impl;
+package com.EMS.service.impl;
 
 import com.EMS.entity.Employee;
 import com.EMS.repository.EmployeeRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-import com.EMS.services.EmployeeService;
+import com.EMS.service.EmployeeService;
 
+import java.awt.print.Pageable;
 import java.util.List;
 
 @Service
@@ -48,5 +51,9 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeRepository.findByKeyWord(keyword);
     }
 
-
+    @Override
+    public Page<Employee> findPaginated(int pageNo, int pageSize) {
+        PageRequest pageable = PageRequest.of(pageNo - 1, pageSize);
+        return this.employeeRepository.findAll(pageable);
+    }
 }

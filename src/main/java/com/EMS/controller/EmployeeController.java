@@ -1,11 +1,12 @@
 package com.EMS.controller;
 
 import com.EMS.entity.Employee;
+import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import com.EMS.services.EmployeeService;
+import com.EMS.service.EmployeeService;
 
 import java.util.List;
 
@@ -22,8 +23,7 @@ public class EmployeeController {
 
     @GetMapping("/employees")
     public String listEmployees(Model model){
-        model.addAttribute("employees", employeeService.getAllEmployees());
-        return "employees";
+        return findPaginated(1, model);
     }
 
     @GetMapping("/employees/new")
@@ -65,7 +65,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/employees/search")
-    public String getEmployees(Model model, String keyword){
+    public String getEmployees(Model model,@Param("keyword")  String keyword){
         if(keyword != null){
             model.addAttribute("employees", employeeService.findByKeyword(keyword));
         }else {
@@ -74,4 +74,37 @@ public class EmployeeController {
 
         return "employees";
     }
+
+    @GetMapping("/page/{pageNo}")
+    public String findPaginated(@PathVariable(value = "pageNo") int pageNo, Model model){
+        int pageSize = 5;
+
+        Page<Employee> page = employeeService.findPaginated(pageNo, pageSize);
+        List<Employee> employees = page.getContent();
+
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("totalPages", page.getTotalPages());
+        model.addAttribute("totalItems", page.getTotalElements());
+        model.addAttribute("employees", employees);
+
+        return "employees";
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

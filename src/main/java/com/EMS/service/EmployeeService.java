@@ -19,5 +19,5 @@ public interface EmployeeService {
 
     List<Employee> findByKeyword(String keyword);
 
-    Page<Employee> findPaginated(int pageNo, int pageSize);
+    Page<Employee> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection);
 }

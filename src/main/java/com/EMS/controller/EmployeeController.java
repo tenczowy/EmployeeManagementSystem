@@ -23,7 +23,7 @@ public class EmployeeController {
 
     @GetMapping("/employees")
     public String listEmployees(Model model){
-        return findPaginated(1, model);
+        return findPaginated(1, model, "firstName", "asc");
     }
 
     @GetMapping("/employees/new")
@@ -76,15 +76,20 @@ public class EmployeeController {
     }
 
     @GetMapping("/page/{pageNo}")
-    public String findPaginated(@PathVariable(value = "pageNo") int pageNo, Model model){
+    public String findPaginated(@PathVariable(value = "pageNo") int pageNo,Model model, @RequestParam("sortField") String sortField, @RequestParam("sortDir") String sortDir){
         int pageSize = 5;
 
-        Page<Employee> page = employeeService.findPaginated(pageNo, pageSize);
+        Page<Employee> page = employeeService.findPaginated(pageNo, pageSize, sortField, sortDir);
         List<Employee> employees = page.getContent();
 
         model.addAttribute("currentPage", pageNo);
         model.addAttribute("totalPages", page.getTotalPages());
         model.addAttribute("totalItems", page.getTotalElements());
+
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDir", sortDir);
+        model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
+
         model.addAttribute("employees", employees);
 
         return "employees";

@@ -1,9 +1,8 @@
-package com.EMS.service;
+package com.EMS.services;
 
 import com.EMS.entity.Employee;
 import org.springframework.data.domain.Page;
 
-import java.awt.print.Pageable;
 import java.util.List;
 
 public interface EmployeeService {

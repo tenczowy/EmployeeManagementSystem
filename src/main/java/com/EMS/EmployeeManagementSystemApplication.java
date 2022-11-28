@@ -24,12 +24,4 @@ public class EmployeeManagementSystemApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 
 	}
-
-	//	@Autowired
-//	private EmployeeRepository employeeRepository;
-//	@Override
-//	public void run(String... args) throws Exception {
-//		Employee employee = new Employee("kasia", "Brodowska", "kb@gmail.com");
-//		employeeRepository.save(employee);
-//	}
 }

@@ -9,7 +9,7 @@
 <body>
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
     <!-- Brand -->
-    <a class="navbar-brand" href="#">Employee Management System</a>
+    <a class="navbar-brand" href="/ems/employees">Employee Management System</a>
 
     <!-- Toggler/collapsibe Button -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -45,9 +45,15 @@
         <table class="table table-striped table-bordered">
             <thread class="table-dark">
                 <tr>
-                    <th>Employee First Name</th>
-                    <th>Employee Last Name</th>
-                    <th>Employee Email</th>
+                    <th>
+                        <a th:href="@{'/ems/page/' + ${currentPage} + '?sortField=firstName&sortDir=' + ${reverseSortDir}}">Employee First Name</a>
+                    </th>
+                    <th>
+                        <a th:href="@{'/ems/page/' + ${currentPage} + '?sortField=lastName&sortDir=' + ${reverseSortDir}}">Employee Last Name</a>
+                    </th>
+                    <th>
+                        <a th:href="@{'/ems/page/' + ${currentPage} + '?sortField=email&sortDir=' + ${reverseSortDir}}">Email</a>
+                    </th>
                     <th>Actions</th>
                 </tr>
             </thread>
@@ -67,6 +73,30 @@
             </tbody>
 
         </table>
+
+        <div th:if = "${totalPages > 1}">
+            <div class = "row col-sm-10">
+                <div class = "col-sm-2">
+                    Total Rows: [[${totalItems}]]
+                </div>
+                <div class = "col-sm-2">
+                    <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+                        <a th:if="${currentPage != i}" th:href="@{'/ems/page/' + ${i}}">[[${i}]]</a>
+                        <span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp; &nbsp;
+                    </span>
+                </div>
+                <div class = "col-sm-1">
+                    <a th:if="${currentPage < totalPages}" th:href="@{'/ems/page/' + ${currentPage + 1}}">Next</a>
+                    <span th:unless="${currentPage < totalPages}">Next</span>
+                </div>
+                <div class = "col-sm-1">
+                    <a th:if="${currentPage < totalPages}" th:href="@{'/ems/page/' + ${totalPages}}">Last</a>
+                    <span th:unless="${currentPage < totalPages}">Last</span>
+                </div>
+            </div>
+
+        </div>
+
     </div>
 </body>
 </html>

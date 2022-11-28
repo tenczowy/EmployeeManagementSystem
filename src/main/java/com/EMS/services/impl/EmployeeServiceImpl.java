@@ -1,4 +1,4 @@
-package com.EMS.service.impl;
+package com.EMS.services.impl;
 
 import com.EMS.entity.Employee;
 import com.EMS.repository.EmployeeRepository;
@@ -6,9 +6,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import com.EMS.service.EmployeeService;
+import com.EMS.services.EmployeeService;
 
-import java.awt.print.Pageable;
 import java.util.List;
 
 @Service

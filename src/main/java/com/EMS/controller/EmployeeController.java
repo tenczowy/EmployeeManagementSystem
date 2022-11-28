@@ -6,7 +6,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import com.EMS.service.EmployeeService;
+import com.EMS.services.EmployeeService;
 
 import java.util.List;
 

@@ -34,9 +34,15 @@ public class EmployeeController {
     }
 
     @PostMapping("/employees")
-    public String saveEmployee(@ModelAttribute("employee") Employee employee){
-        employeeService.saveEmployee(employee);
-        return "redirect:employees";
+    public String saveEmployee(@ModelAttribute("employee") Employee employee, Model model){
+        if(employeeService.findByEmail(employee.getEmail()) == null){
+            employeeService.saveEmployee(employee);
+            return "redirect:employees";
+        }
+        employee.setEmail("Employee with this email already exists");
+        model.addAttribute(employee);
+        return "create_employee";
+
     }
 
     @GetMapping("/employees/edit/{id}")

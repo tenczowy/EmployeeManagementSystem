@@ -58,4 +58,9 @@ public class EmployeeServiceImpl implements EmployeeService {
         PageRequest pageable = PageRequest.of(pageNo - 1, pageSize, sort);
         return this.employeeRepository.findAll(pageable);
     }
+
+    @Override
+    public Employee findByEmail(String email) {
+        return employeeRepository.findByEmail(email);
+    }
 }

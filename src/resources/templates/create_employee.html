@@ -9,7 +9,7 @@
 <body>
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
     <!-- Brand -->
-    <a class="navbar-brand" href="/ems/employees">Employee Management System</a>
+    <a class="navbar-brand" th:href="@{/ems/employees}">Employee Management System</a>
 
     <!-- Toggler/collapsibe Button -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -35,17 +35,17 @@
                     <form th:action="@{/ems/employees}" th:object="${employee}" method="POST">
                         <div class="form-group">
                             <label>Employee First Name</label>
-                            <input type = "text" name="firstName" th:field = "*{firstName}" class="form-control" placeholder="Enter Employee First Name">
+                            <input type = "text" name="firstName" th:field = "*{firstName}" class="form-control" placeholder="Enter Employee First Name" required>
                         </div>
 
                         <div class="form-group">
                             <label>Employee Last Name</label>
-                            <input type = "text" name="lastName" th:field = "*{lastName}" class="form-control" placeholder="Enter Employee Last Name">
+                            <input type = "text" name="lastName" th:field = "*{lastName}" class="form-control" placeholder="Enter Employee Last Name" required>
                         </div>
 
                         <div class="form-group">
                             <label>Employee Email</label>
-                            <input type = "text" name="email" th:field = "*{email}" class="form-control" placeholder="Enter Employee Email">
+                            <input type = "email" name="email" th:field = "*{email}" class="form-control" placeholder="Enter Employee Email" required>
                         </div>
                         <div class="box-footer">
                             <button type="submit" class="btn btn-primary">Submit</button>

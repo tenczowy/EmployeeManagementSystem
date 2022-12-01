@@ -58,6 +58,8 @@ public class EmployeeController {
         existingEmployee.setFirstName(employee.getFirstName());
         existingEmployee.setLastName(employee.getLastName());
         existingEmployee.setEmail(employee.getEmail());
+        existingEmployee.setWages(employee.getWages());
+        existingEmployee.setPhoneNumber(employee.getPhoneNumber());
 
         employeeService.updateEmployee(employee);
         return "redirect:/ems/employees";

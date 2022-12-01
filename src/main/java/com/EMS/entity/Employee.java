@@ -1,7 +1,6 @@
 package com.EMS.entity;
 
 
-
 import javax.persistence.*;
 
 
@@ -20,15 +19,37 @@ public class Employee {
     private String lastName;
     @Column(name = "email")
     private String email;
+    @Column(name = "wages")
+    private String wages;
+    @Column(name = "phone_number")
+    private String phoneNumber;
 
     public Employee() {
     }
 
-    public Employee(String firstName, String lastName, String email) {
+    public Employee(String firstName, String lastName, String email, String wages, String phoneNumber) {
         super();
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.wages = wages;
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getWages() {
+        return wages;
+    }
+
+    public void setWages(String wages) {
+        this.wages = wages;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public long getId() {
